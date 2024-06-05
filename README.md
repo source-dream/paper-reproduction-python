@@ -1,4 +1,4 @@
-<h1 style="text-align: center;">paper-reproduction-python</h1>
+<h1 align="center">paper-reproduction-python</h1>
 
 
 
