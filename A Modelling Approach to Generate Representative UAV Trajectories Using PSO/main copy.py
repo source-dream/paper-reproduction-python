@@ -1,7 +1,7 @@
 '''
 Author: sourcedream
 Date: 2024-06-05 22:12:01
-LastEditTime: 2024-06-07 14:55:22
+LastEditTime: 2024-06-07 14:34:36
 Description: A Modelling Approach to Generate Representative UAV Trajectories Using PSO
 '''
 
@@ -15,8 +15,8 @@ map_size = np.array([120, 120, 120])  # 地图大小
 start = np.array([10, 10, 10])  # 起点
 target = np.array([100, 100, 80])  # 目标点
 particle_num = 40  # 粒子数量
-particle_point_num = 3  # 粒子位置点数量
-iteration_num = 400  # 迭代次数
+particle_point_num = 2  # 粒子位置点数量
+iteration_num = 200  # 迭代次数
 w = 1.2  # 惯性权重 0-2之间
 c1 = 2  # 个人学习因子 0-2之间
 c2 = 2  # 社会学习因子 0-2之间
@@ -26,7 +26,8 @@ c2 = 2  # 社会学习因子 0-2之间
 # 构建三维场景
 figure = plt.figure()  # 创建一个新的图形窗口
 scene = figure.add_subplot(111, projection='3d')  # 添加一个3D子图
-scene.set_title('PSO for UAV Trajectory Generation')  # 设置标题
+# 设置改进A*算法标题
+scene.set_title('improve A* Algorithm for UAV Trajectory Generation')  # 设置标题
 scene.set_xlabel('X')  # 设置X轴标签
 scene.set_ylabel('Y')  # 设置Y轴标签
 scene.set_zlabel('Z')  # 设置Z轴标签
@@ -44,7 +45,7 @@ for i in range(obstacles_num):
     x = center[0] + radius * np.outer(np.cos(u), np.sin(v))
     y = center[1] + radius * np.outer(np.sin(u), np.sin(v))
     z = center[2] + radius * np.outer(np.ones(np.size(u)), np.cos(v))
-    scene.plot_surface(x, y, z, color='gray')
+    scene.plot_surface(x, y, z, color='blue', alpha=0.8)
     # scene.plot_surface(x, y, z, color='gray', alpha=0.5)
 
 # 碰撞检测函数
@@ -111,7 +112,7 @@ for i in range(iteration_num):
         scene.plot(spl_x, spl_y, spl_z, label='Particle {}'.format(j)) # 绘制路径
     plt.pause(0.1)  # 暂停0.1秒
     scene.clear()  # 清空子图
-    scene.set_title('PSO for UAV Trajectory Generation')  # 重新设置标题
+    scene.set_title('improve A* Algorithm for UAV Trajectory Generation')  # 设置标题
     scene.set_xlabel('X')  # 重新设置X轴标签
     scene.set_ylabel('Y')  # 重新设置Y轴标签
     scene.set_zlabel('Z')  # 重新设置Z轴标签
@@ -124,7 +125,7 @@ for i in range(iteration_num):
         x = center[0] + radius * np.outer(np.cos(u), np.sin(v))
         y = center[1] + radius * np.outer(np.sin(u), np.sin(v))
         z = center[2] + radius * np.outer(np.ones(np.size(u)), np.cos(v))
-        scene.plot_surface(x, y, z, color='gray')
+        scene.plot_surface(x, y, z, color='pink', alpha=0.8)
 
 # 绘制最终的全局最优路径
 scene.plot([start[0], *global_best[:, 0], target[0]], 

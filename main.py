@@ -1,7 +1,7 @@
 '''
 Author: sourcedream
 Date: 2024-06-05 22:12:01
-LastEditTime: 2024-06-07 14:55:22
+LastEditTime: 2024-06-06 19:22:31
 Description: A Modelling Approach to Generate Representative UAV Trajectories Using PSO
 '''
 
@@ -15,8 +15,8 @@ map_size = np.array([120, 120, 120])  # 地图大小
 start = np.array([10, 10, 10])  # 起点
 target = np.array([100, 100, 80])  # 目标点
 particle_num = 40  # 粒子数量
-particle_point_num = 3  # 粒子位置点数量
-iteration_num = 400  # 迭代次数
+particle_point_num = 2  # 粒子位置点数量
+iteration_num = 200  # 迭代次数
 w = 1.2  # 惯性权重 0-2之间
 c1 = 2  # 个人学习因子 0-2之间
 c2 = 2  # 社会学习因子 0-2之间
